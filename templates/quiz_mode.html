@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <link href="../static/css/style1.css" rel="stylesheet">
+    <script type="text/javascript" src="../static/js/script1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+
+
+</head>
+<body>
+        <div class="container-fluid">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="" style="width: 100rem;">
+                            <div class="row">
+                                <div>
+                                    {% for image in images %}
+                                        <img src="{{ image.name.url }}" width="390px" height="350px">
+                                    {%endfor%}
+                                    <div style="text-align: center">
+                                         {% for image in images2 %}
+                                             <h4>{{ image.question.title }}</h4>
+                                             <input type="submit" class="btn btn-warning" value="check" onclick="answernames('{{ image.answer.title }}','{{image.answer.description}}')">
+                                         {% endfor %}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="quiz" id="quiz" data-toggle="buttons">
+                             {% for answer in answers %}
+                                 <label class="element-animation1 btn btn-lg btn-dark btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" value = "{{ answer.title }}" name="answer">{{ answer.title }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="modal-footer text-muted">
+                                 <b style ="color: green;" id="correct"></b>
+                                 <b style ="color: red;" id="incorrect"></b>
+                            <div style ="color: green;" id="description"></div>
+                            <div class="pagination">
+                            <span class="step-links">
+                                {% if images.has_previous %}
+                                    <a class="btn btn-warning" href="?page=1">&laquo; first</a>
+                                    <a class="btn btn-warning" href="?page={{ images.previous_page_number }}">previous</a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ images.number }} of {{ images.paginator.num_pages }}.
+                                </span>
+
+                                {% if images.has_next %}
+                                    <a class="btn btn-warning" href="?page={{ images.next_page_number }}">next</a>
+                                    <a class="btn btn-warning" href="?page={{ images.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
