@@ -48,6 +48,7 @@ $ conda activate djangoenv
 
 $ conda install --name newdjango django==3.0.3
 $ conda install --name newdjango sqlparse==0.3.1
+
 Verify that django is installed : pip freeze
 
 ### create project Django : 
@@ -58,12 +59,13 @@ $ django-admin startproject (project_name)
 ### Create an application
 
 - Start an application:
-$ django-admin startapp (app_name)
 
+$ django-admin startapp (app_name)
 
 ### Migrations
 
 To run migrations.
+
 $ python manage.py makemigrations
 $ python manage.py migrate
 
@@ -71,15 +73,17 @@ $ python manage.py migrate
 ### Create superuser
 
 To create super user run.
-python manage.py createsuperuser
+
+$ python manage.py createsuperuser
+
 After running this command it will ask for username, password. You can access admin panel from localhost:8000/admin/
 
 
 ### Running locally
 
 To run at localhost. It will run on port 8000 by default.
-$ python manage.py runserver
 
+$ python manage.py runserver
 
 ## Usage
 
